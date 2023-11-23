@@ -31,7 +31,7 @@
                 </li>
 
                 <c:choose>
-                    <c:when test="${not empty signedUserNick}">
+                    <c:when test="${empty signedUserNick}">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
