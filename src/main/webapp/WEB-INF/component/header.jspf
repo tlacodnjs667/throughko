@@ -1,0 +1,16 @@
+<%@ page pageEncoding="UTF-8" %>
+
+<header class="card text-bg-dark">
+    <div style="display: grid; align-items: center">
+        <div class="card-body" style="width: 70%">
+            <h2 id="brand" class="display-1 card-text">
+                THROUGHKO
+                <c:if test="${not empty pageDesc}">
+                    <span id="pagedesc" class="card-text display-6">${pageDesc}</span>
+                </c:if>
+            </h2>
+            <h4 id="sub-title" class=" text-body-secondary card-text display-4">우리들의 커뮤니티;</h4>
+        </div>
+    </div>
+
+</header>
