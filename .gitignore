@@ -1,9 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,intellij,eclipse,java,test
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,intellij,eclipse,java,test
 
-./mvnw.cmd
-./mvnw
-./.mvn/
+mvnw.cmd
+mvnw
+.mvn/
 .idea/
 ### Eclipse ###
 .metadata
