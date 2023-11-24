@@ -39,7 +39,7 @@ public class UserSignUpController extends HttpServlet {
 
         if (result == 1) {
             log.debug("유저 생성 성공, 로그인하세요");
-            resp.sendRedirect(req.getContextPath());
+            resp.sendRedirect(req.getContextPath() + "/user/signin");
         } else {
             log.debug("유저 생성 실패");
             String failStatus = "?result=fail";
