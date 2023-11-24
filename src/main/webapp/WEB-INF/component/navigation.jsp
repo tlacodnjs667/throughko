@@ -1,8 +1,8 @@
 <%@ page pageEncoding="UTF-8" %>
 
-<c:set var="homePath" value=""/>
-<c:set var="signInPath" value=""/>
-<c:set var="signUpPath" value="/user/signup"/>
+<c:url var="homePath" value=""/>
+<c:url var="signInPath" value=""/>
+<c:url var="signUpPath" value="/user/signup"/>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
