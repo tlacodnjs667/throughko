@@ -21,6 +21,16 @@
 <main class="mx-3">
     <div>
         <form method="post">
+            <div class="mb-3">
+                <label for="category-id" class="form-label my-2">카테고리</label>
+                <select id="category-id" class="form-select" name="category"
+                        aria-label="Default select example">
+                    <c:forEach var="category" items="${categories}">
+                        <option value="${category.category_pk}">${category.category_title}</option>
+                    </c:forEach>
+                </select>
+            </div>
+
             <%--제목 input--%>
             <div class="mb-3">
                 <label for="titleInput" class="form-label">제목</label>
@@ -44,8 +54,6 @@
             <%--제출 버튼--%>
             <button type="submit" class="btn btn-primary form-control">Submit</button>
         </form>
-
-
     </div>
 </main>
 
