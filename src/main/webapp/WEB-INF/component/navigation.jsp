@@ -2,7 +2,7 @@
 
 <c:set var="homePath" value=""/>
 <c:set var="signInPath" value=""/>
-<c:set var="signUpPath" value=""/>
+<c:set var="signUpPath" value="/user/signup"/>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
@@ -38,9 +38,10 @@
                                 회원이세요?
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="">로그인</a></li>
+                                <li><a class="dropdown-item" href="${signInPath}">로그인</a></li>
                                 <li><a class="dropdown-item" href="">아이디/비밀번호 찾기</a></li>
-                                <li><a class="dropdown-item" href="">회원가입</a></li>
+                                <li><a class="dropdown-item" href="${signUpPath}">회원가입</a></li>
+                                <li><a class="dropdown-item" href="${signUpPath}">회원가입</a></li>
                             </ul>
                         </li>
                     </c:when>
