@@ -28,7 +28,7 @@ public class UserDao {
             SELECT USER_PK, NICKNAME FROM USER
             WHERE USER_ID = ? AND PASSWORD = ?  
         """;
-    private static final Logger log = LoggerFactory.getLogger(UserDao.class);
+    private final Logger log = LoggerFactory.getLogger(UserDao.class);
     private static UserDao instance;
     private final HikariDataSource dataSource;
 

@@ -8,7 +8,7 @@ public class UserInfoInSessionDto {
     private String nickname;
 
     public UserInfoInSessionDto(int userPk, String nickname) {
-        this.userPk = this.userPk;
+        this.userPk = userPk;
         this.nickname = nickname;
     }
 
