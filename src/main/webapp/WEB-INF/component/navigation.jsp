@@ -41,7 +41,6 @@
                                 <li><a class="dropdown-item" href="${signInPath}">로그인</a></li>
                                 <li><a class="dropdown-item" href="">아이디/비밀번호 찾기</a></li>
                                 <li><a class="dropdown-item" href="${signUpPath}">회원가입</a></li>
-                                <li><a class="dropdown-item" href="${signUpPath}">회원가입</a></li>
                             </ul>
                         </li>
                     </c:when>
