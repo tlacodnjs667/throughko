@@ -27,9 +27,11 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="">전체글 보기</a></li>
-                        <li><a class="dropdown-item" href="">카테고리A</a></li>
-                        <li><a class="dropdown-item" href="">Another Category</a></li>
-                        <li><a class="dropdown-item" href="">the other Category</a></li>
+                        <c:forEach var="category" items="${categories}">
+                            <li><a class="dropdown-item" href="">${category.category_title}
+                               게시판 보기</a></li>
+                        </c:forEach>
+
                     </ul>
                 </li>
 
