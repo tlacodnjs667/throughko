@@ -1,8 +1,11 @@
 <%@ page pageEncoding="UTF-8" %>
 
-<c:url var="homePath" value=""/>
-<c:url var="signInPath" value=""/>
+<c:url var="homePath" value="/"/>
+<c:url var="signInPath" value="/user/signin">
+    <c:param name="target" value="${targetUrl}"/>
+</c:url>
 <c:url var="signUpPath" value="/user/signup"/>
+
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
@@ -31,7 +34,7 @@
                 </li>
 
                 <c:choose>
-                    <c:when test="${empty signedUserNick}">
+                    <c:when test="${empty signedUser}">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
@@ -48,8 +51,8 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
-                                    <%--                                    ${signedUserNick} 님--%>
-                                ㅇㅇ님
+                                    ${signedUser.nickname} 님
+
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="">프로필</a></li>

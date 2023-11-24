@@ -2,18 +2,23 @@ package com.wooruk.domain;
 
 public class User {
 
-    private String id;
+    private Integer id;
     private String userId;
     private String password;
     private String email;
-    private String nick;
+    private String nickname;
 
-    public User(String id, String userId, String password, String email, String nick) {
+    public User(Integer id, String userId, String password, String email, String nickname ) {
         this.id = id;
         this.userId = userId;
         this.password = password;
         this.email = email;
-        this.nick = nick;
+        this.nickname = nickname ;
+    }
+
+    public User(Integer id, String nickname ) {
+        this.id = id;
+        this.nickname = nickname ;
     }
 
     @Override
@@ -23,11 +28,11 @@ public class User {
             ", userId='" + userId + '\'' +
             ", password='" + password + '\'' +
             ", email='" + email + '\'' +
-            ", nick='" + nick + '\'' +
+            ", nick='" + nickname + '\'' +
             '}';
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -43,7 +48,7 @@ public class User {
         return email;
     }
 
-    public String getNick() {
-        return nick;
+    public String getNickname () {
+        return nickname;
     }
 }
