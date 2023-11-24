@@ -8,7 +8,7 @@ public class UserInfoInSessionDto {
     private String nickname;
 
     public UserInfoInSessionDto(int userPk, String nickname) {
-        this.userPk = this.userPk;
+        this.userPk = userPk;
         this.nickname = nickname;
     }
 
@@ -16,7 +16,7 @@ public class UserInfoInSessionDto {
         if (user == null) {
             return null;
         }
-        return new UserInfoInSessionDto(user.getId(), user.getNickname());
+        return new UserInfoInSessionDto(user.getUser_pk(), user.getNickname());
     }
 
     @Override

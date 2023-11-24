@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 public class UserService {
 
     private static UserService instance;
-    private static Logger log = LoggerFactory.getLogger(UserService.class);
+    private Logger log = LoggerFactory.getLogger(UserService.class);
     private final UserDao userDao;
 
     private UserService() {

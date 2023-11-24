@@ -2,6 +2,7 @@ package com.wooruk.repository;
 
 import com.wooruk.datasource.DatasourceUtil;
 import com.wooruk.domain.Category;
+import com.wooruk.dto.PostCreateDto;
 import com.zaxxer.hikari.HikariDataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,12 +16,23 @@ import org.slf4j.LoggerFactory;
 public class PostDao {
 
     private static final String SQL_SELECT_CATEGORIES = "SELECT * FROM CATEGORY";
+
+    private static final String CREATE_POST_SQL = """
+        INSERT INTO POST (
+            POST_TITLE,
+            POST_CONTENT,
+            USER_FK,
+            CATEGORY_FK
+        ) VALUES (
+            ?, ?, ?, ?
+        )
+        """;
     private static PostDao instance;
-    private final HikariDataSource ds;
     private final Logger log = LoggerFactory.getLogger(PostDao.class);
+    private final HikariDataSource dataSource;
 
     private PostDao() {
-        ds = DatasourceUtil.getInstance().getDs();
+        dataSource = DatasourceUtil.getInstance().getDs();
     }
 
     public static PostDao getInstance() {
@@ -37,7 +49,7 @@ public class PostDao {
         List<Category> result = new ArrayList<>();
 
         try {
-            conn = ds.getConnection();
+            conn = dataSource.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT_CATEGORIES);
             rs = stmt.executeQuery();
 
@@ -52,6 +64,10 @@ public class PostDao {
             closeResources(conn, stmt, rs);
         }
         return result;
+    }
+
+    private void closeResources(Connection conn, PreparedStatement stmt) {
+        closeResources(conn, stmt, null);
     }
 
     private void closeResources(Connection conn, PreparedStatement stmt, ResultSet rs) {
@@ -75,5 +91,28 @@ public class PostDao {
         String title = rs.getString("CATEGORY_TITLE");
 
         return new Category(category_pk, title);
+    }
+
+    public int createPost(PostCreateDto dto) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int result = 0;
+
+        try {
+            conn = dataSource.getConnection();
+            stmt = conn.prepareStatement(CREATE_POST_SQL);
+
+            stmt.setString(1, dto.getPostTitle());
+            stmt.setString(2, dto.getPostContent());
+            stmt.setInt(3, dto.getUserFk());
+            stmt.setInt(4, dto.getCategoryFk());
+
+            result = stmt.executeUpdate();
+        } catch (SQLException e) {
+            log.error(e.toString());
+        } finally {
+            closeResources(conn, stmt);
+        }
+        return result;
     }
 }
