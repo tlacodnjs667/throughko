@@ -6,13 +6,9 @@ public class Post {
     private Integer post_pk;
     private String post_title;
     private String post_content;
-    private Integer user_fk;
-    private Integer category_fk;
+    private User author;
+    private Category category;
     private LocalDateTime created_time;
     private LocalDateTime modified_time;
-
-
-
-
 
 }

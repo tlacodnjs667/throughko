@@ -1,9 +1,10 @@
 package com.wooruk.service;
 
 import com.wooruk.domain.Category;
+import com.wooruk.dto.PostCreateDto;
+import com.wooruk.dto.PostListItemDto;
 import com.wooruk.repository.PostDao;
 import java.util.List;
-import com.wooruk.dto.PostCreateDto;
 
 public class PostService {
 
@@ -28,4 +29,10 @@ public class PostService {
     public int createPost(PostCreateDto dto) {
         return postDao.createPost(dto);
     }
+
+    public List<PostListItemDto> getPostList(Integer categoryFk) {
+        return postDao.select(categoryFk);
+    }
+
+
 }
