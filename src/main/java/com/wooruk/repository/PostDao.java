@@ -3,11 +3,13 @@ package com.wooruk.repository;
 import com.wooruk.datasource.DatasourceUtil;
 import com.wooruk.domain.Category;
 import com.wooruk.dto.PostCreateDto;
+import com.wooruk.dto.PostListItemDto;
 import com.zaxxer.hikari.HikariDataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
@@ -115,4 +117,61 @@ public class PostDao {
         }
         return result;
     }
+
+    public List<PostListItemDto> select(Integer categoryFk) {
+        String DEFAULT_SELECT_SQL = """
+            SELECT
+                POST_PK,
+                POST_TITLE,
+                CATEGORY_TITLE,
+                NICKNAME,
+                CREATED_TIME
+            FROM POST
+            LEFT JOIN CATEGORY ON CATEGORY_FK = CATEGORY_PK
+            LEFT JOIN USER ON USER_FK = USER_PK
+            """;
+        String SQL_SELECT_POSTS_LIST = null;
+
+        if (categoryFk != null) {
+            SQL_SELECT_POSTS_LIST = DEFAULT_SELECT_SQL + " WHERE CATEGORY_FK = ?";
+        } else {
+            SQL_SELECT_POSTS_LIST = DEFAULT_SELECT_SQL;
+        }
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<PostListItemDto> postList = new ArrayList<>();
+
+        try {
+            conn = dataSource.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_POSTS_LIST);
+
+            if (categoryFk != null) {
+                stmt.setInt(1, categoryFk);
+            }
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Integer postId = rs.getInt("POST_PK");
+                String postTitle = rs.getString("POST_TITLE");
+                String nickname = rs.getString("NICKNAME");
+                String category = rs.getString("CATEGORY_TITLE");
+                Timestamp createdTime = rs.getTimestamp("CREATED_TIME");
+
+                PostListItemDto post = new PostListItemDto(postId, postTitle, nickname, category,
+                    createdTime);
+                postList.add(post);
+            }
+
+        } catch (SQLException e) {
+            log.error(e.toString());
+        } finally {
+            closeResources(conn, stmt, rs);
+        }
+
+        return postList;
+    }
+
 }

@@ -16,7 +16,7 @@ public class UserInfoInSessionDto {
         if (user == null) {
             return null;
         }
-        return new UserInfoInSessionDto(user.getUser_pk(), user.getNickname());
+        return new UserInfoInSessionDto(user.getUserPk(), user.getNickname());
     }
 
     @Override

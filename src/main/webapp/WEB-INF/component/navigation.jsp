@@ -4,6 +4,8 @@
 <c:url var="signInPath" value="/user/signin">
     <c:param name="target" value="${targetUrl}"/>
 </c:url>
+<c:url var="postList" value="/post/list"/>
+
 <c:url var="signUpPath" value="/user/signup"/>
 
 
@@ -26,10 +28,15 @@
                         게시판
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="">전체글 보기</a></li>
+                        <li><a class="dropdown-item" href="${postList}">전체글 보기</a></li>
                         <c:forEach var="category" items="${categories}">
-                            <li><a class="dropdown-item" href="">${category.category_title}
-                               게시판 보기</a></li>
+                            <c:url var="postListByCategory" value="/post/list">
+                                <c:param name="category_id"
+                                         value="${category.category_pk}"/>
+                            </c:url>
+                            <li><a class="dropdown-item" href="${postListByCategory}">
+                                    ${category.category_title}
+                                게시판 보기</a></li>
                         </c:forEach>
 
                     </ul>

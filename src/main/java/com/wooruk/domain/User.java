@@ -32,11 +32,11 @@ public class User {
                '}';
     }
 
-    public int getUser_pk() {
+    public int getUserPk() {
         return user_pk;
     }
 
-    public String getUser_id() {
+    public String getUserId() {
         return user_id;
     }
 
