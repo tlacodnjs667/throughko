@@ -18,14 +18,13 @@
 <c:set var="pageDesc" value="게시글 목록"/>
 <%@include file="../component/header.jspf" %>
 <%@include file="../component/navigation.jsp" %>
-
-<main>
-
-    <div>
-        <h2 class="m-2">${listDescription}</h2>
-    </div>
+<main style="display: flex">
 
     <div style="width: 100%">
+        <div>
+            <h2 class="m-2">${listDescription}</h2>
+        </div>
+
         <table class="mx-4 table" style="width: 100%">
             <thead>
             <tr>
@@ -43,7 +42,8 @@
                 <tr>
                     <td>${post.category}</td>
                     <td><a href="${postDetailUrl}" type="button"
-                           class="link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">${post.postTitle}</a></td>
+                           class="link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">${post.postTitle}</a>
+                    </td>
                     <td>${post.author}</td>
                     <td>${post.createdTime}</td>
                 </tr>
@@ -53,7 +53,7 @@
 
 
     </div>
-
+    <%@include file="../component/float-test.jsp" %>
 </main>
 
 <%@include file="../component/footer.jsp" %>

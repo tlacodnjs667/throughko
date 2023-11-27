@@ -5,8 +5,12 @@
     <c:param name="target" value="${targetUrl}"/>
 </c:url>
 <c:url var="postList" value="/post/list"/>
-
+<c:url var="createPost" value="/post/create"/>
+<c:url var="profilePage" value="/user/profile"/>
 <c:url var="signUpPath" value="/user/signup"/>
+<c:url var="postListBest" value="best">
+    <c:param name="order" value="best"/>
+</c:url>
 
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -20,10 +24,10 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="">실시간 베스트 글</a>
+                    <a class="nav-link" href="${postListBest}">실시간 베스트 글</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="" role="button"
+                    <a class="nav-link dropdown-toggle" href="${postList}" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         게시판
                     </a>
@@ -64,7 +68,7 @@
 
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="">프로필</a></li>
+                                <li><a class="dropdown-item" href="${profilePage}">프로필</a></li>
                                 <li><a class="dropdown-item" href="">로그아웃</a></li>
                             </ul>
                         </li>

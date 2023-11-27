@@ -25,11 +25,11 @@ public class UserDao {
         )
         """;
     private static final String SQL_SIGNIN = """
-            SELECT USER_PK, NICKNAME FROM USER
+            SELECT USER_PK, NICKNAME, USER_ID FROM USER
             WHERE USER_ID = ? AND PASSWORD = ?  
         """;
-    private final Logger log = LoggerFactory.getLogger(UserDao.class);
     private static UserDao instance;
+    private final Logger log = LoggerFactory.getLogger(UserDao.class);
     private final HikariDataSource dataSource;
 
     private UserDao() {
@@ -84,7 +84,8 @@ public class UserDao {
             if (rs.next()) {
                 int userPk = rs.getInt("USER_PK");
                 String nickname = rs.getString("NICKNAME");
-                signedUser = new User(userPk, nickname);
+                String userId = rs.getString("USER_ID");
+                signedUser = new User(userPk, nickname, userId);
                 log.debug(signedUser.toString());
             }
 

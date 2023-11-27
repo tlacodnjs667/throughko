@@ -2,7 +2,7 @@
 <Configuration>
   <Appenders>
     <Console name="console" target="SYSTEM_OUT">
-      <PatterLayout pattern="%d{HH:mm:ss.SSS} %-5p [%-40.40logger] %m%n"/>
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5p [%-40.40logger] %m%n"/>
     </Console>
   </Appenders>
   <Loggers>

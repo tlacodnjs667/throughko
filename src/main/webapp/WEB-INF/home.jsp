@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="component.css">
     <style>
       main {
-        height: 1117px;
+        height: 1000px;
       }
     </style>
 </head>
@@ -25,13 +25,13 @@
 <c:set var="pageDesc" value="main"/>
 <%@include file="component/header.jspf" %>
 <%@include file="component/navigation.jsp" %>
-
 <main>
 
 
+    <%@include file="component/float-test.jsp" %>
+    <%@include file="component/footer.jsp" %>
 </main>
 
-<%@include file="component/footer.jsp" %>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
