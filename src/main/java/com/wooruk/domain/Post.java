@@ -10,5 +10,7 @@ public class Post {
     private Category category;
     private LocalDateTime created_time;
     private LocalDateTime modified_time;
+    private Integer likes;
+    private Integer hits;
 
 }

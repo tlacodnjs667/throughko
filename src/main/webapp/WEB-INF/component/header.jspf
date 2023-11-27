@@ -9,7 +9,8 @@
                     <span id="pagedesc" class="card-text display-6">${pageDesc}</span>
                 </c:if>
             </h2>
-            <h4 id="sub-title" class=" text-body-secondary card-text display-4">우리들의 커뮤니티;</h4>
+            <h4 id="sub-title" class=" text-body-secondary card-text display-4">우리들의
+                커뮤니티;</h4>
         </div>
     </div>
 

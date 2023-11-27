@@ -8,17 +8,18 @@ public class User {
     private String email;
     private String nickname;
 
-    public User(Integer user_pk, String user_id, String password, String email, String nickname ) {
+    public User(Integer user_pk, String user_id, String password, String email, String nickname) {
         this.user_pk = user_pk;
         this.user_id = user_id;
         this.password = password;
         this.email = email;
-        this.nickname = nickname ;
+        this.nickname = nickname;
     }
 
-    public User(Integer user_pk, String nickname ) {
+    public User(Integer user_pk, String nickname, String userId) {
         this.user_pk = user_pk;
-        this.nickname = nickname ;
+        this.nickname = nickname;
+        this.user_id = userId;
     }
 
     @Override
@@ -48,7 +49,7 @@ public class User {
         return email;
     }
 
-    public String getNickname () {
+    public String getNickname() {
         return nickname;
     }
 }
