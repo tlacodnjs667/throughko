@@ -2,8 +2,10 @@ package com.wooruk.repository;
 
 import com.wooruk.datasource.DatasourceUtil;
 import com.wooruk.domain.Category;
+import com.wooruk.domain.Post;
 import com.wooruk.dto.PostCreateDto;
 import com.wooruk.dto.PostListItemDto;
+import com.wooruk.dto.UserForPostDto;
 import com.zaxxer.hikari.HikariDataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -173,6 +175,71 @@ public class PostDao {
         }
 
         return postList;
+    }
+
+    public Post selectPostById(Integer postId) {
+        String SELECT_SQL_BY_ID = """
+            SELECT
+                POST_PK,
+                POST_TITLE,
+                POST_CONTENT,
+                CATEGORY_FK,
+                CATEGORY_TITLE,
+                USER_FK,
+                NICKNAME,
+                CREATED_TIME,
+                MODIFIED_TIME,
+                LIKES,
+                HITS
+            FROM POST
+            LEFT JOIN CATEGORY ON CATEGORY_FK = CATEGORY_PK
+            LEFT JOIN USER ON POST.USER_FK = USER_PK
+            WHERE POST_PK = ?
+            """;
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Post result = null;
+        try {
+
+            conn = dataSource.getConnection();
+            stmt = conn.prepareStatement(SELECT_SQL_BY_ID);
+
+            stmt.setInt(1, postId);
+
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Integer postPk = rs.getInt("POST_PK");
+                String postTitle = rs.getString("POST_TITLE");
+                String postContent = rs.getString("POST_CONTENT");
+                Timestamp createdTime = rs.getTimestamp("CREATED_TIME");
+                Timestamp modifiedTime = rs.getTimestamp("MODIFIED_TIME");
+                String nickname = rs.getString("NICKNAME");
+                int userId = rs.getInt("USER_FK");
+                int categoryId = rs.getInt("CATEGORY_FK");
+                String categoryTitle = rs.getString("CATEGORY_TITLE");
+                int likes = rs.getInt("LIKES");
+                int hits = rs.getInt("HITS");
+
+                Category category = new Category(categoryId, categoryTitle);
+                UserForPostDto author = new UserForPostDto(userId, nickname);
+
+                result = Post.getBuilder()
+                    .post_pk(postPk).post_title(postTitle).post_content(postContent)
+                    .created_time(createdTime).modified_time(modifiedTime)
+                    .category(category).author(author).likes(likes).hits(hits).build();
+
+            }
+
+
+        } catch (SQLException e) {
+            log.error(e.toString());
+        } finally {
+            closeResources(conn, stmt, rs);
+            return result;
+        }
     }
 
 }
