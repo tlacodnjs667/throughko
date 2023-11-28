@@ -120,6 +120,58 @@ public class PostDao {
         return result;
     }
 
+    public int like (Integer postId) {
+        final String UPDATE_LIKE_SQL = """
+            UPDATE POST
+            SET LIKES = LIKES + 1
+            WHERE POST_PK = ?
+        """;
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int result = 0;
+
+        try {
+            conn = dataSource.getConnection();
+            stmt = conn.prepareStatement(UPDATE_LIKE_SQL);
+
+            stmt.setInt(1, postId);
+
+            result = stmt.executeUpdate();
+        } catch (SQLException e) {
+            log.error(e.toString());
+        } finally {
+            closeResources(conn, stmt);
+        }
+        return result;
+    }
+
+    public int read (Integer postId) {
+        final String UPDATE_HITS_SQL = """
+            UPDATE POST
+            SET HITS = HITS + 1
+            WHERE POST_PK = ?
+        """;
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int result = 0;
+
+        try {
+            conn = dataSource.getConnection();
+            stmt = conn.prepareStatement(UPDATE_HITS_SQL);
+
+            stmt.setInt(1, postId);
+
+            result = stmt.executeUpdate();
+        } catch (SQLException e) {
+            log.error(e.toString());
+        } finally {
+            closeResources(conn, stmt);
+        }
+        return result;
+    }
+
     public List<PostListItemDto> select(Integer categoryFk) {
         String DEFAULT_SELECT_SQL = """
             SELECT
