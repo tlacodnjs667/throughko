@@ -79,7 +79,7 @@
                     <c:url var="postLike" value="/post/like">
                         <c:param name="postId" value="${post.post_pk}"/>
                     </c:url>
-                    <a class="heart-btn" href="/post/like">
+                    <a class="heart-btn" href="${postLike}">
                         <i class="fas fa-heart">${post.likes}</i>
                     </a>
                     <a class="btn btn-primary">

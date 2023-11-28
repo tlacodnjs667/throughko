@@ -39,6 +39,8 @@ public class PostService {
     }
 
     public Post getPost(Integer postId) {
+        postDao.read(postId);
+
         Post post = postDao.selectPostById(postId);
 
         String content = post.getPost_content();
@@ -47,6 +49,11 @@ public class PostService {
         log.debug("Controller : post={}", post);
 
         return post;
+    }
+
+    public int like (Integer postId ) {
+        int result = postDao.like (postId);
+        return result;
     }
 
 
