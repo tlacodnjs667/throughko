@@ -20,7 +20,7 @@
 <%@include file="../component/navigation.jsp" %>
 <main style="display: flex">
 
-    <div style="width: 100%">
+    <div class="mx-4" style="width: 100%;">
         <div>
             <h2 class="m-2">${listDescription}</h2>
         </div>
@@ -28,7 +28,7 @@
         <table class="mx-4 table" style="width: 100%">
             <thead>
             <tr>
-                <th>카테고리</th>
+                <th scope="col">카테고리</th>
                 <th>글 제목</th>
                 <th>작성자</th>
                 <th>글 작성 시간</th>

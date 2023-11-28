@@ -33,11 +33,14 @@ public class PostListController extends HttpServlet {
             category_fk = null;
         }
 
-        List<PostListItemDto> postListItems = postService.getPostList(category_fk);
+        List<PostListItemDto> postListItems = postService.getPostList(category_fk, order);
 
         String listDescription = "전체 목록 보기";
 
         if (category == null) {
+            if (order != null) {
+                listDescription = "베스트 게시글 리스트";
+            }
             req.setAttribute("listDescription", listDescription);
         } else {
             ServletContext application = req.getServletContext();

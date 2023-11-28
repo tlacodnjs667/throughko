@@ -47,7 +47,7 @@
             <thead>
             <tr>
                 <th scope="col"><h4>글 제목</h4></th>
-                <td scope="col"><h4>${post.post_title}</h4></td>
+                <td><h4>${post.post_title}</h4></td>
             </tr>
             </thead>
             <tbody>
@@ -76,10 +76,7 @@
         <div class="btn-wrapper position-relative m-4 text-end">
             <c:choose>
                 <c:when test="${signedUser.userPk eq post.author.id}">
-                    <c:url var="postLike" value="/post/like">
-                        <c:param name="postId" value="${post.post_pk}"/>
-                    </c:url>
-                    <a class="heart-btn" href="${postLike}">
+                    <a class="heart-btn" style="color: rgb(128,128,128)">
                         <i class="fas fa-heart">${post.likes}</i>
                     </a>
                     <a class="btn btn-primary">
@@ -87,6 +84,19 @@
                     <a class="btn btn-warning">
                         삭제하기</a>
                 </c:when>
+                <c:when test="${empty signedUser}">
+                    <a class="heart-btn" style="color: rgb(128,128,128)">
+                        <i class="fas fa-heart">${post.likes}</i>
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <c:url var="postLike" value="/post/like">
+                        <c:param name="postId" value="${post.post_pk}"/>
+                    </c:url>
+                    <a class="heart-btn" href="${postLike}">
+                        <i class="fas fa-heart">${post.likes}</i>
+                    </a>
+                </c:otherwise>
             </c:choose>
             <a id="btn-before" class="btn btn-primary">목록가기</a>
             <span class="heart-btn">

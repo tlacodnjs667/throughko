@@ -172,7 +172,7 @@ public class PostDao {
         return result;
     }
 
-    public List<PostListItemDto> select(Integer categoryFk) {
+    public List<PostListItemDto> select(Integer categoryFk, String orderClause) {
         String DEFAULT_SELECT_SQL = """
             SELECT
                 POST_PK,
@@ -192,6 +192,8 @@ public class PostDao {
         } else {
             SQL_SELECT_POSTS_LIST = DEFAULT_SELECT_SQL;
         }
+
+        SQL_SELECT_POSTS_LIST += (" ORDER BY "+ orderClause + "POST_PK DESC");
 
         Connection conn = null;
         PreparedStatement stmt = null;
