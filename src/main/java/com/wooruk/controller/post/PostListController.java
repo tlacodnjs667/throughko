@@ -25,6 +25,7 @@ public class PostListController extends HttpServlet {
         throws ServletException, IOException {
         Integer category_fk;
         String category = req.getParameter("category_id");
+        String order = req.getParameter("order");
 
         if (category != null) {
             category_fk = Integer.parseInt(category);
@@ -46,7 +47,8 @@ public class PostListController extends HttpServlet {
             Category matched_category = categories.stream()
                 .filter(e -> e.getCategory_pk() == category_fk).toList().get(0);
 
-            req.setAttribute("listDescription", matched_category.getCategory_title() + "  카테고리 내 게시글 리스트");
+            req.setAttribute("listDescription",
+                matched_category.getCategory_title() + "  카테고리 내 게시글 리스트");
         }
 
         req.setAttribute("postListItems", postListItems);

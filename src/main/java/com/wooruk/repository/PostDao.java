@@ -130,6 +130,7 @@ public class PostDao {
             LEFT JOIN CATEGORY ON CATEGORY_FK = CATEGORY_PK
             LEFT JOIN USER ON USER_FK = USER_PK
             """;
+
         String SQL_SELECT_POSTS_LIST = null;
 
         if (categoryFk != null) {

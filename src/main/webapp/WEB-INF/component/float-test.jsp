@@ -8,14 +8,20 @@ position:fixed; right: 0px; top: 400px">
     <c:choose>
         <c:when test="${not empty signedUser}">
             <div style="align-items: center"> <!--회원 정보-->
-                <div class="form-control"
+                <div class="btn form-control"
                      style="align-items: center;border: none;">${signedUser.nickname}
                     님
+                    <br/>
+                    id :
+                    <span style="color: rgb(128,128,128)">${signedUser.userId}</span>
                 </div>
-                <div class="form-control" style="color: rgb(128,128,128)"><a
-                        style="text-align:center;border: none;">${signedUser.userId}</a></div>
+
                 <!-- TODO : 프로필 보기 버튼 추가 -->
                 <a href="${profilePage}" class="btn form-control">프로필 보기</a></li>
+                <a id="logoutBtn" class="btn form-control" style="color:
+                rgb(128,128,128)"
+                   href="${signOutPath}">
+                    로그아웃</a>
             </div>
             <hr/>
             <!-- TODO : 게시글 관련 -->

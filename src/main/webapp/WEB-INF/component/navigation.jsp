@@ -8,6 +8,7 @@
 <c:url var="createPost" value="/post/create"/>
 <c:url var="profilePage" value="/user/profile"/>
 <c:url var="signUpPath" value="/user/signup"/>
+<c:url var="signOutPath" value="/user/signout"/>
 <c:url var="postListBest" value="best">
     <c:param name="order" value="best"/>
 </c:url>
@@ -69,7 +70,8 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="${profilePage}">프로필</a></li>
-                                <li><a class="dropdown-item" href="">로그아웃</a></li>
+                                <li><a id="logoutBtn" class="dropdown-item" href="${signOutPath}">
+                                    로그아웃</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
