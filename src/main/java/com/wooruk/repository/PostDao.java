@@ -5,6 +5,7 @@ import com.wooruk.domain.Category;
 import com.wooruk.domain.Post;
 import com.wooruk.dto.PostCreateDto;
 import com.wooruk.dto.PostListItemDto;
+import com.wooruk.dto.PostUpdateDto;
 import com.wooruk.dto.UserForPostDto;
 import com.zaxxer.hikari.HikariDataSource;
 import java.sql.Connection;
@@ -146,6 +147,33 @@ public class PostDao {
         return result;
     }
 
+    public int updatePost(PostUpdateDto dto) {
+        final String UPDATE_LIKE_SQL = """
+                UPDATE POST
+                SET POST_TITLE = ?, POST_CONTENT = ?
+                WHERE POST_PK = ?
+            """;
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int result = 0;
+
+        try {
+            conn = dataSource.getConnection();
+            stmt = conn.prepareStatement(UPDATE_LIKE_SQL);
+
+            stmt.setString(1, dto.getTitle());
+            stmt.setString(2, dto.getContent());
+            stmt.setInt(3, dto.getPostId());
+
+            result = stmt.executeUpdate();
+        } catch (SQLException e) {
+            log.error(e.toString());
+        } finally {
+            closeResources(conn, stmt);
+        }
+        return result;
+    }
+
     public int read(Integer postId) {
         final String UPDATE_HITS_SQL = """
                 UPDATE POST
@@ -193,7 +221,7 @@ public class PostDao {
             SQL_SELECT_POSTS_LIST = DEFAULT_SELECT_SQL;
         }
 
-        SQL_SELECT_POSTS_LIST += (" ORDER BY "+ orderClause + "POST_PK DESC");
+        SQL_SELECT_POSTS_LIST += (" ORDER BY " + orderClause + "POST_PK DESC");
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -329,7 +357,7 @@ public class PostDao {
         return result;
     }
 
-    public boolean deletePost (Integer postId) {
+    public boolean deletePost(Integer postId) {
         String DELETE_SQL_BY_ID = """
             DELETE FROM POST
             WHERE POST_PK = ?

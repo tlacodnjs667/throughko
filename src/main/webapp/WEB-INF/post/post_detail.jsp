@@ -79,7 +79,10 @@
                     <a class="heart-btn" style="color: rgb(128,128,128)">
                         <i class="fas fa-heart">${post.likes}</i>
                     </a>
-                    <a class="btn btn-primary">
+                    <c:url var="postUpdateUrl" value="/post/update">
+                        <c:param name="postId" value="${post.post_pk}"/>
+                    </c:url>
+                    <a class="btn btn-primary" href="${postUpdateUrl}">
                         수정하기</a>
                     <c:url var="postDeleteUrl" value="/post/delete">
                         <c:param name="postId" value="${post.post_pk}"/>
@@ -119,6 +122,15 @@
   document.addEventListener("DOMContentLoaded", () => {
     const btnBefore = document.getElementById("btn-before");
     const btnDelete = document.getElementById("btnDelete");
+
+    const url = location.href;
+    console.log(url)
+    if (url.includes("fail")) {
+      alert("게시글 수정에 실패하였습니다! 다시 작성해주세요.");
+    }
+    if (url.includes("action=update")) {
+      alert("게시글이 수정되었습니다.");
+    }
 
     btnDelete.addEventListener("click", (e) => {
       const deleteConfirm = confirm("해당 게시글을 삭제하시겠습니까?");

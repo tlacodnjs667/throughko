@@ -3,11 +3,8 @@ package com.wooruk.domain;
 import com.wooruk.dto.UserForPostDto;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class Post {
-    private Logger log = LoggerFactory.getLogger(Post.class);
 
     private Integer post_pk;
     private String post_title;
@@ -31,6 +28,12 @@ public class Post {
         this.modified_time = modified_time;
         this.likes = likes;
         this.hits = hits;
+    }
+
+    public Post(Integer postId, String title, String content) {
+        this.post_pk = postId;
+        this.post_title = title;
+        this.post_content = content;
     }
 
     public static PostBuilder getBuilder() {
@@ -66,8 +69,7 @@ public class Post {
     }
 
     public String getCreated_time_string() {
-        String result =  makeTimeStringFormat(created_time);
-        log.debug(result);
+        String result = makeTimeStringFormat(created_time);
         return result;
     }
 
