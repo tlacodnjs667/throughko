@@ -1,6 +1,7 @@
 package com.wooruk.controller.post;
 
 import com.wooruk.domain.Post;
+import com.wooruk.dto.PostUpdateDto;
 import com.wooruk.service.PostService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -32,6 +33,26 @@ public class PostUpdateController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
-        super.doPost(req, resp);
+        log.debug("::doPost");
+
+        Integer postId = Integer.parseInt(req.getParameter("postId"));
+        String title = req.getParameter("title");
+        String content = req.getParameter("content");
+
+        PostUpdateDto dto = new PostUpdateDto(postId, title, content);
+
+        int result = postService.updatePost(dto);
+        
+        String redirectUrl;
+
+        if (result == 1) {
+            String params = "postId=" + postId + "&action=update";
+            redirectUrl = req.getContextPath() + "/post/detail?" + params;
+        } else {
+            String params = "postId=" + postId + "&result=fail";
+            redirectUrl = req.getContextPath() + "/post/update?" + params;
+        }
+        
+        resp.sendRedirect(redirectUrl);
     }
 }

@@ -79,9 +79,15 @@
                     <a class="heart-btn" style="color: rgb(128,128,128)">
                         <i class="fas fa-heart">${post.likes}</i>
                     </a>
-                    <a class="btn btn-primary">
+                    <c:url var="postUpdateUrl" value="/post/update">
+                        <c:param name="postId" value="${post.post_pk}"/>
+                    </c:url>
+                    <a class="btn btn-primary" href="${postUpdateUrl}">
                         수정하기</a>
-                    <a class="btn btn-warning">
+                    <c:url var="postDeleteUrl" value="/post/delete">
+                        <c:param name="postId" value="${post.post_pk}"/>
+                    </c:url>
+                    <a class="btn btn-warning" href="${postDeleteUrl}">
                         삭제하기</a>
                 </c:when>
                 <c:when test="${empty signedUser}">

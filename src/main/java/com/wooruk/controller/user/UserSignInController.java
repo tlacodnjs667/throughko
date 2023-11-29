@@ -43,7 +43,7 @@ public class UserSignInController extends HttpServlet {
         UserInfoInSessionDto userInDb = userService.signin(dto);
         log.debug("userInfoToSaveSession={}", userInDb);
 
-        System.out.println(req.getParameter("target"));
+        log.debug(req.getParameter("target"));
         if (userInDb == null) {
             resp.sendRedirect(req.getContextPath() + "/user/signin?result=fail&target=" +
                 URLEncoder.encode(req.getParameter("target"), StandardCharsets.UTF_8));

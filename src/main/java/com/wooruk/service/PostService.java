@@ -5,6 +5,7 @@ import com.wooruk.domain.Category;
 import com.wooruk.domain.Post;
 import com.wooruk.dto.PostCreateDto;
 import com.wooruk.dto.PostListItemDto;
+import com.wooruk.dto.PostUpdateDto;
 import com.wooruk.repository.PostDao;
 import java.util.List;
 import org.slf4j.Logger;
@@ -65,4 +66,9 @@ public class PostService {
     }
 
 
+    public int updatePost(PostUpdateDto dto) {
+        int result = postDao.updatePost(dto);
+
+        return result;
+    }
 }

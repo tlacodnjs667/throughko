@@ -27,7 +27,7 @@ public class UserSignOutController extends HttpServlet {
         session.invalidate();
 
         String param = "?action=logout";
-        System.out.println(req.getContextPath());
+        log.debug(req.getContextPath());
         resp.sendRedirect(req.getContextPath() + param);
     }
 }
