@@ -33,23 +33,10 @@
         </div>
 
         <div class="wrapper-div">
-<<<<<<< HEAD
             <table class="mx-4 table" style="width: 100%">
                 <thead>
-=======
-        <table class="mx-4 table" style="width: 100%">
-            <thead>
-            <tr>
-                <th scope="col">카테고리</th>
-                <th>글 제목</th>
-                <th>작성자</th>
-                <th>글 작성 시간</th>
-            </tr>
-            </thead>
-            <tbody>
->>>>>>> c4265c3c1f75517f3a89b1f4cd21c08e0a4a1341
                 <tr>
-                    <th>카테고리</th>
+                    <th scope="col">카테고리</th>
                     <th>글 제목</th>
                     <th>작성자</th>
                     <th>글 작성 시간</th>
@@ -85,19 +72,12 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 <script>
-<<<<<<< HEAD
   document.addEventListener("DOMContentLoaded", () => {
-    if (location.href.includes("delete=success")) {
-      alert("게시글 삭제가 완료되었습니다.")
-    }
-  })
-=======
-    document.addEventListener("DOMContentLoaded", () => {
-      if(location.href.includes("delete=success")) {
-        alert("게시글 삭제가 완료되었습니다.")
+        if (location.href.includes("delete=success")) {
+          alert("게시글 삭제가 완료되었습니다.")
+        }
       }
-    })
->>>>>>> c4265c3c1f75517f3a89b1f4cd21c08e0a4a1341
+  )
 </script>
 </body>
 </html>

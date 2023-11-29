@@ -54,7 +54,6 @@ public class PostService {
         return post;
     }
 
-<<<<<<< HEAD
     public Post getPostToUpdate(Integer postId) {
         Post post = postDao.selectPostById(postId);
         log.debug("Controller : post={}", post);
@@ -62,12 +61,8 @@ public class PostService {
         return post;
     }
 
-    public int like (Integer postId) {
-        int result = postDao.like (postId);
-=======
     public int like(Integer postId) {
         int result = postDao.like(postId);
->>>>>>> c4265c3c1f75517f3a89b1f4cd21c08e0a4a1341
         return result;
     }
 
@@ -79,12 +74,6 @@ public class PostService {
             result = false;
         }
         result = postDao.deletePost(postId);
-<<<<<<< HEAD
-=======
-
-        return result;
-    }
->>>>>>> c4265c3c1f75517f3a89b1f4cd21c08e0a4a1341
 
         return result;
     }
