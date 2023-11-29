@@ -21,7 +21,7 @@
 <c:set var="pageDesc" value="회원가입"/>
 <%@include file="../component/header.jspf" %>
 <%@include file="../component/navigation.jsp" %>
-<main>
+<main style="padding-bottom: 15%">
     <form class="form card" method="post">
         <div class="card-body mb-3">
             <label for="inputUserId" class="form-label">아이디 :</label>
@@ -45,9 +45,9 @@
             <label for="inputEmail" class="form-label">이메일 :</label>
             <input type="email" name="email" class="form-control" id="inputEmail"
                    aria-describedby="emailHelp" required/>
-            <div id="emailDesc" class="form-text"/>
-            아이디, 비밀번호 분실 시 사용할 이메일입니다.
-        </div>
+            <div id="emailDesc" class="form-text">
+                아이디, 비밀번호 분실 시 사용할 이메일입니다.
+            </div>
         </div>
 
         <div class="card-body mb-3">

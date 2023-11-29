@@ -11,8 +11,8 @@ import org.slf4j.LoggerFactory;
 public class UserService {
 
     private static UserService instance;
-    private Logger log = LoggerFactory.getLogger(UserService.class);
     private final UserDao userDao;
+    private Logger log = LoggerFactory.getLogger(UserService.class);
 
     private UserService() {
         userDao = UserDao.getInstance();
@@ -38,5 +38,12 @@ public class UserService {
         return signedUser;
     }
 
+    public User getUserInfo(Integer userPk) {
+        User user = null;
+
+        user = userDao.getUserInfoToProfile(userPk);
+
+        return user;
+    }
 
 }
