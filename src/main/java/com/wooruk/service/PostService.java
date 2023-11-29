@@ -34,8 +34,9 @@ public class PostService {
         return postDao.createPost(dto);
     }
 
-    public List<PostListItemDto> getPostList(Integer categoryFk) {
-        return postDao.select(categoryFk);
+    public List<PostListItemDto> getPostList(Integer categoryFk, String order) {
+        String orderClause = order != null ? "LIKES DESC, " : "";
+        return postDao.select(categoryFk, orderClause);
     }
 
     public Post getPost(Integer postId) {
