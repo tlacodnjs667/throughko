@@ -11,8 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class PostService {
-    private final Logger log = LoggerFactory.getLogger(PostDetailController.class);
+
     private static PostService instance;
+    private final Logger log = LoggerFactory.getLogger(PostDetailController.class);
     private final PostDao postDao;
 
     private PostService() {
@@ -51,10 +52,21 @@ public class PostService {
         return post;
     }
 
-    public int like (Integer postId ) {
-        int result = postDao.like (postId);
+    public int like(Integer postId) {
+        int result = postDao.like(postId);
         return result;
     }
 
+    public boolean deletePost(Integer postId, Integer userId) {
+        boolean result;
+        if (postDao.selectPostByUserAndPost(postId, userId)) {
+            result = true;
+        } else {
+            result = false;
+        }
+        result = postDao.deletePost(postId);
+
+        return result;
+    }
 
 }

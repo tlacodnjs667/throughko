@@ -84,7 +84,10 @@
                     </a>
                     <a class="btn btn-primary">
                         수정하기</a>
-                    <a class="btn btn-warning">
+                    <c:url var="postDeleteUrl" value="/post/delete">
+                        <c:param name="postId" value="${post.post_pk}"/>
+                    </c:url>
+                    <a id="btnDelete" class="btn btn-warning" href="${postDeleteUrl}">
                         삭제하기</a>
                 </c:when>
             </c:choose>
@@ -105,10 +108,18 @@
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const btnBefore = document.getElementById("btn-before");
+    const btnDelete = document.getElementById("btnDelete");
+
+    btnDelete.addEventListener("click", (e) => {
+      const deleteConfirm = confirm("해당 게시글을 삭제하시겠습니까?");
+      if ( !deleteConfirm ) {
+        e.preventDefault();
+      }
+    });
 
     btnBefore.addEventListener("click", () => {
       history.back();
-    })
+    });
   })
 </script>
 </body>

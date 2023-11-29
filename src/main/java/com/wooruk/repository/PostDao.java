@@ -120,12 +120,12 @@ public class PostDao {
         return result;
     }
 
-    public int like (Integer postId) {
+    public int like(Integer postId) {
         final String UPDATE_LIKE_SQL = """
-            UPDATE POST
-            SET LIKES = LIKES + 1
-            WHERE POST_PK = ?
-        """;
+                UPDATE POST
+                SET LIKES = LIKES + 1
+                WHERE POST_PK = ?
+            """;
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -146,12 +146,12 @@ public class PostDao {
         return result;
     }
 
-    public int read (Integer postId) {
+    public int read(Integer postId) {
         final String UPDATE_HITS_SQL = """
-            UPDATE POST
-            SET HITS = HITS + 1
-            WHERE POST_PK = ?
-        """;
+                UPDATE POST
+                SET HITS = HITS + 1
+                WHERE POST_PK = ?
+            """;
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -293,5 +293,67 @@ public class PostDao {
             return result;
         }
     }
+
+    public boolean selectPostByUserAndPost(Integer postId, Integer userId) {
+        String SELECT_SQL_BY_ID = """
+            SELECT
+                POST_PK
+            FROM POST
+            WHERE POST_PK = ? AND USER_FK = ?
+            """;
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        boolean result = false;
+
+        try {
+
+            conn = dataSource.getConnection();
+            stmt = conn.prepareStatement(SELECT_SQL_BY_ID);
+
+            stmt.setInt(1, postId);
+            stmt.setInt(2, userId);
+
+            rs = stmt.executeQuery();
+
+            result = rs.next();
+
+        } catch (SQLException e) {
+            log.error(e.toString());
+        } finally {
+            closeResources(conn, stmt, rs);
+        }
+        return result;
+    }
+
+    public boolean deletePost (Integer postId) {
+        String DELETE_SQL_BY_ID = """
+            DELETE FROM POST
+            WHERE POST_PK = ?
+            """;
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        boolean result = false;
+
+        try {
+
+            conn = dataSource.getConnection();
+            stmt = conn.prepareStatement(DELETE_SQL_BY_ID);
+
+            stmt.setInt(1, postId);
+
+            result = stmt.executeUpdate() == 1;
+
+        } catch (SQLException e) {
+            log.error(e.toString());
+        } finally {
+            closeResources(conn, stmt);
+        }
+        return result;
+    }
+
 
 }

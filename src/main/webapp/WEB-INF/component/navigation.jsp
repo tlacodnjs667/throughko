@@ -9,7 +9,7 @@
 <c:url var="profilePage" value="/user/profile"/>
 <c:url var="signUpPath" value="/user/signup"/>
 <c:url var="signOutPath" value="/user/signout"/>
-<c:url var="postListBest" value="best">
+<c:url var="postListBest" value="/post/list">
     <c:param name="order" value="best"/>
 </c:url>
 
