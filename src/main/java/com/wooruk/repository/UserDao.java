@@ -28,6 +28,12 @@ public class UserDao {
             SELECT USER_PK, NICKNAME, USER_ID FROM USER
             WHERE USER_ID = ? AND PASSWORD = ?  
         """;
+    private static final String SQL_GET_USER_INFO_PROFILE = """
+            SELECT
+                USER_PK, USER_ID, EMAIL, NICKNAME
+            FROM USER
+            WHERE USER_PK = ?
+        """;
     private static UserDao instance;
     private final Logger log = LoggerFactory.getLogger(UserDao.class);
     private final HikariDataSource dataSource;
@@ -97,9 +103,39 @@ public class UserDao {
         return signedUser;
     }
 
-
     void closeResources(Connection conn, PreparedStatement statement) {
         closeResources(conn, statement, null);
+    }
+
+    public User getUserInfoToProfile(Integer userPk) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        User userInfo = null;
+        try {
+            conn = dataSource.getConnection();
+            stmt = conn.prepareStatement(SQL_GET_USER_INFO_PROFILE);
+
+            stmt.setInt(1, userPk);
+
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                int user_pk = rs.getInt("USER_PK");
+                String userId = rs.getString("USER_ID");
+                String nickname = rs.getString("NICKNAME");
+                String email = rs.getString("EMAIL");
+
+                userInfo = new User(user_pk, userId, email, nickname);
+                log.debug(userInfo.toString());
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeResources(conn, stmt, rs);
+        }
+        return userInfo;
     }
 
     void closeResources(Connection conn, PreparedStatement statement, ResultSet rs) {
