@@ -12,7 +12,9 @@
 <c:url var="profilePage" value="/user/profile"/>
 <c:url var="signUpPath" value="/user/signup"/>
 <c:url var="signOutPath" value="/user/signout"/>
-
+<c:url var="postListBest" value="/post/list">
+    <c:param name="order" value="best"/>
+</c:url>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
