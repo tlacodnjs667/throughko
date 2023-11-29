@@ -42,7 +42,7 @@ public class PostUpdateController extends HttpServlet {
         PostUpdateDto dto = new PostUpdateDto(postId, title, content);
 
         int result = postService.updatePost(dto);
-        
+        log.debug("result={}", result);
         String redirectUrl;
 
         if (result == 1) {
@@ -52,7 +52,7 @@ public class PostUpdateController extends HttpServlet {
             String params = "postId=" + postId + "&result=fail";
             redirectUrl = req.getContextPath() + "/post/update?" + params;
         }
-        
+
         resp.sendRedirect(redirectUrl);
     }
 }

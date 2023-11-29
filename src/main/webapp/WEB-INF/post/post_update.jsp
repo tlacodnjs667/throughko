@@ -81,11 +81,6 @@
         crossorigin="anonymous"></script>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const url = location.href;
-    console.log(url)
-    if (url.includes("fail")) {
-      alert("게시글 수정에 실패하였습니다! 다시 작성해주세요.");
-    }
 
     const btnUpdate = document.getElementById("btnUpdate");
 

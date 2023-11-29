@@ -87,7 +87,7 @@
                     <c:url var="postDeleteUrl" value="/post/delete">
                         <c:param name="postId" value="${post.post_pk}"/>
                     </c:url>
-                    <a class="btn btn-warning" href="${postDeleteUrl}">
+                    <a id="btnDelete" class="btn btn-warning" href="${postDeleteUrl}">
                         삭제하기</a>
                 </c:when>
                 <c:when test="${empty signedUser}">
@@ -121,10 +121,30 @@
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const btnBefore = document.getElementById("btn-before");
+    const btnDelete = document.getElementById("btnDelete");
+
+<<<<<<< HEAD
+    const url = location.href;
+    console.log(url)
+    if (url.includes("fail")) {
+      alert("게시글 수정에 실패하였습니다! 다시 작성해주세요.");
+    }
+    if (url.includes("action=update")) {
+      alert("게시글이 수정되었습니다.");
+    }
+
+=======
+>>>>>>> c4265c3c1f75517f3a89b1f4cd21c08e0a4a1341
+    btnDelete.addEventListener("click", (e) => {
+      const deleteConfirm = confirm("해당 게시글을 삭제하시겠습니까?");
+      if ( !deleteConfirm ) {
+        e.preventDefault();
+      }
+    });
 
     btnBefore.addEventListener("click", () => {
       history.back();
-    })
+    });
   })
 </script>
 </body>
