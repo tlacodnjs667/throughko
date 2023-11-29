@@ -5,6 +5,9 @@
     <c:param name="target" value="${targetUrl}"/>
 </c:url>
 <c:url var="postList" value="/post/list"/>
+<c:url var="postListBest" value="/post/list">
+    <c:param name="order" value="best"/>
+</c:url>
 <c:url var="createPost" value="/post/create"/>
 <c:url var="profilePage" value="/user/profile"/>
 <c:url var="signUpPath" value="/user/signup"/>
@@ -12,7 +15,6 @@
 <c:url var="postListBest" value="/post/list">
     <c:param name="order" value="best"/>
 </c:url>
-
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">

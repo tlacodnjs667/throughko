@@ -33,8 +33,16 @@
         </div>
 
         <div class="wrapper-div">
-            <table class="mx-4 table" style="width: 100%">
-                <thead>
+        <table class="mx-4 table" style="width: 100%">
+            <thead>
+            <tr>
+                <th scope="col">카테고리</th>
+                <th>글 제목</th>
+                <th>작성자</th>
+                <th>글 작성 시간</th>
+            </tr>
+            </thead>
+            <tbody>
                 <tr>
                     <th>카테고리</th>
                     <th>글 제목</th>
