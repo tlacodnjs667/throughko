@@ -45,8 +45,15 @@ public class PostService {
         Post post = postDao.selectPostById(postId);
 
         String content = post.getPost_content();
-        content = content.replace("\n", "<br>");
+        content = content.replace("\n", "<br/>");
         post.setPost_content(content);
+        log.debug("Controller : post={}", post);
+
+        return post;
+    }
+
+    public Post getPostToUpdate(Integer postId) {
+        Post post = postDao.selectPostById(postId);
         log.debug("Controller : post={}", post);
 
         return post;
