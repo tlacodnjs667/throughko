@@ -20,8 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function onKeyUpToCheck() {
-    console.log(isIdInputValid);
-    console.log(isPasswordInputValid);
     if (isIdInputValid && isPasswordInputValid) {
       submitBtn.disabled = false;
     }

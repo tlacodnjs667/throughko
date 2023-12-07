@@ -11,6 +11,7 @@
 <c:url var="createPost" value="/post/create"/>
 <c:url var="profilePage" value="/user/profile"/>
 <c:url var="signUpPath" value="/user/signup"/>
+<c:url var="findAccountUrl" value="/user/idquery"/>
 <c:url var="signOutPath" value="/user/signout"/>
 <c:url var="postListBest" value="/post/list">
     <c:param name="order" value="best"/>
@@ -58,7 +59,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="${signInPath}">로그인</a></li>
-                                <li><a class="dropdown-item" href="">아이디/비밀번호 찾기</a></li>
+                                <li><a class="dropdown-item" href="${findAccountUrl}">아이디/비밀번호 찾기</a></li>
                                 <li><a class="dropdown-item" href="${signUpPath}">회원가입</a></li>
                             </ul>
                         </li>

@@ -46,4 +46,11 @@ public class UserService {
         return user;
     }
 
+    public String getUserIdByEmail(String email) {
+        return userDao.getUserIdByEmail(email);
+    }
+
+    public boolean getUserIdByIdAndEmail(String email, String userId) {
+        return userDao.getUserIdByIdAndEmail(email, userId);
+    }
 }
