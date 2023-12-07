@@ -36,10 +36,13 @@ position:fixed; right: 0px; top: 400px">
                 </h5>
             </div>
             <div>
-                <a class="dropdown-item" href="${signInPath}">로그인</a>
+                <a class="btn" href="${signInPath}">로그인</a>
             </div>
             <div>
-                <a class="dropdown-item" href="${signUpPath}">회원가입</a>
+                <a class="btn" href="${signUpPath}">회원가입</a>
+            </div>
+            <div>
+                <a class="btn" href="${findAccountUrl}">아이디/비밀번호 찾기</a>
             </div>
         </c:otherwise>
     </c:choose>

@@ -138,6 +138,63 @@ public class UserDao {
         return userInfo;
     }
 
+
+    private static final String SQL_GET_USER_ID_BY_EMAIL = """
+        SELECT USER_ID FROM USER WHERE EMAIL = ?
+        """;
+    public String getUserIdByEmail(String email) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        String userId = null;
+        try {
+            conn = dataSource.getConnection();
+            stmt = conn.prepareStatement(SQL_GET_USER_ID_BY_EMAIL);
+
+            stmt.setString(1, email);
+
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                userId = rs.getString("USER_ID");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeResources(conn, stmt, rs);
+        }
+        return userId;
+    }
+    private static final String SQL_GET_EXIST_BY_EMAIL_AND_ID = """
+        SELECT USER_PK FROM USER WHERE EMAIL = ? AND USER_ID = ?
+        """;
+    public boolean getUserIdByIdAndEmail(String email, String userId) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        boolean isExist = false;
+        try {
+            conn = dataSource.getConnection();
+            stmt = conn.prepareStatement(SQL_GET_EXIST_BY_EMAIL_AND_ID);
+
+            stmt.setString(1, email);
+            stmt.setString(2, userId);
+
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+               isExist = rs.getBoolean("USER_PK");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeResources(conn, stmt, rs);
+        }
+        return isExist;
+    }
+
     void closeResources(Connection conn, PreparedStatement statement, ResultSet rs) {
 
         try {
